@@ -1,0 +1,9 @@
+dj-database-url==0.4.2
+Dj-static==0.0.6
+Django==1.9
+django-bootstrap3==9.1.0
+django-jquery==3.1.0
+virtualenv==15.1.0
+numpy
+pandas
+scikit-learn

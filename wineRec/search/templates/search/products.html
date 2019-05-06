@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products Page - Dashboard Template</title>
+    <!-- 
+
+    Template 2108 Dashboard
+
+	http://www.tooplate.com/view/2108-dashboard
+    
+    -->
+    {% load staticfiles %}
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="{% static 'css/tooplate.css' %}">
+</head>
+
+<body id="reportsPage" class="bg02">
+
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand" href="index.html">
+                            <i class="fas fa-3x fa-wine-glass tm-site-icon"></i>
+                            <h1 class="tm-site-title mb-0">Wines</h1>
+                        </a>              
+                    </nav> 
+                   
+                        </div>
+                            <div class="col-12">
+                            <nav class="navbar navbar-expand navbar-light bg-light">
+                            <i class="fas fa-2x fas fa-user aria-hidden="true""></i>
+                            <b><em> &nbsp; &nbsp;{{name}}</em></b>
+                                </nav>
+                                </div>
+                                </div>  
+                              
+                                    
+            
+                
+            <!-- row -->
+            <div class="row tm-content-row tm-mt-big">
+
+
+                <div class="col-xl-8 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+                    
+                                To better understand the inner-workings of this website, navigate to my implementation blog.&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               
+                               <a href="https://blog-ml.netlify.com/" class="btn btn-primary tm-table-mt">Blog</a>
+                                
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12">
+                                <h2 class="tm-block-title d-inline-block">Wines</h2>
+
+                            </div>
+                           
+                        </div>
+
+
+
+                                 
+
+
+                        <div class="table-responsive">
+
+
+
+                             <thead>
+                                         <td class="tm-product-name">Enter Search Query</td>  
+                                        </thead>
+                                        <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                                        <form method="GET" action=" ">
+                                            <input type="text" name="q" placeholder="Search Wines"/>
+                      
+                                     <select name = "dropdown"  class="btn btn-small btn-primary">
+                                        <option value = "exhaustive">Exhaustive</option>
+                                        <option value = "title">Title</option>
+                                        <option value = "country">Country</option>
+                                        <option value = "price_above">Price above</option>
+                                        <option value = "price_below">Price below</option>
+
+                                        <option value = "points_above">Points above</option>
+                                        <option value = "points_below">Points below</option>
+
+                                        <option value = "province">Province</option>
+                                        <option value = "winery">Winery</option>
+                                        <option value = "variety">Variety</option>
+                                        
+                                     </select>
+                                     <br></br>
+                                     <input type="submit" placeholder="Search"  class="btn btn-small btn-primary"/>
+                                  </form>
+
+                                     <form method="GET" action=" " text="text-right">
+                            <input type="submit" value="Refresh" class="btn btn-small btn-primary" text="text-right"/>
+                        </form>
+                        <br></br>
+                        <p> Enter the number of categories you want for the wines below.</p>
+                         <form method="GET" action=" ">
+                            {% csrf_token %}
+                                            <input type="text" name="catnum" placeholder="Enter a number"/>
+                                            <br></br>
+                                            <input type="submit" placeholder="Search"  class="btn btn-small btn-primary"/>
+                                        </form>
+                        <br></br>
+                        {% if check_cluster == 1 %}
+                        <p> Select the category to display from!</p>
+                        <form method="GET" action=" "> 
+                        {% csrf_token %}
+
+                                     <select name = "cat"  class="btn btn-small btn-primary">
+                                        {% for x in cluster_names %} 
+                                        <option value = "{{x.cluster_name_generated}}">{{x.cluster_name_generated}}</option>
+                                        {% endfor %}
+                                     </select>
+                                     <br></br>
+                                     <input type="submit" placeholder="Search" href ="/details/{{id}}" value="Display" class="btn btn-small btn-primary"/>
+                                  </form>
+
+                        <div class="text-right"> 
+                        <p>
+                        {% endif %}
+
+                        <!-- <a href="https://www.google.com" class="btn btn-primary tm-table-mt">Categorical Analysis</a> -->
+                                
+                        
+                            
+                                </div></p>
+
+                              <p>Click on each wine to know the details. Start adding wines to your collection below! </p>
+                                {% if collection_display == 1 %}
+                                <p>Displaying Wines from your selected category! <b> {{display}}</b></p>
+                                {% endif %}                                            
+
+
+                                <thead>
+                                    <tr class="tm-bg-gray">
+                                        <th scope="col">Wine Title</th>
+                                        <th scope="col">Province</th>
+                                        <th scope="col" class="text-center">Price</th>
+                                        <th scope="col" class="text-center">Points</th>
+                                        <th scope="col">Winery</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Variety</th>
+                                        
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                        {% if collection_display == 1%}
+                                        {% for item in cluster_collection_display_list %}
+                                    <tr>                                 
+                                        <td class="tm-product-name"><a href="/search/details/{{item.id}}">{{ item.title }}</td>
+                                        <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.province }}</td>
+                                        <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.price }}</td>
+                                        <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.points }}</td>
+                                         <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.winery }}</td>
+                                          <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.country }}</td>
+                                          <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.variety }}</td>
+                                  
+                                       
+                                    </tr>
+                                     {% endfor %}
+                                        {% endif %}
+
+
+
+                                        {% if collection_display == 0%}
+                                        {% for item in items %}
+                                    <tr>                                 
+                                        <td class="tm-product-name"><a href="/search/details/{{item.id}}">{{ item.title }}</td>
+                                        <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.province }}</td>
+                                        <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.price }}</td>
+                                        <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.points }}</td>
+                                         <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.winery }}</td>
+                                          <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.country }}</td>
+                                          <td class="text-center"><a href="/search/details/{{item.id}}">{{ item.variety }}</td>
+                                  
+                                       
+                                    </tr>
+                                     {% endfor %}
+                                        {% endif %}
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tm-table-mt tm-table-actions-row">
+                          
+                            <div class="tm-table-actions-col-right">
+                                <span class="tm-pagination-label">Page</span>
+                                <nav aria-label="Page navigation" class="d-inline-block">
+                                    <ul class="pagination tm-pagination">
+                                        <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                                        <li class="page-item">
+                                            <span class="tm-dots d-block">...</span>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="?page=9">9</a></li>
+                                        {% if collection_display ==  1 %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ cluster_collection_display_list.paginator.num_pages }}">{{ cluster_collection_display_list.paginator.num_pages }}</a></li>
+                                        {% endif %}
+                                        {% if collection_display ==  0 %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ items.paginator.num_pages }}">{{ items.paginator.num_pages }}</a></li>
+                                        {% endif %}
+                                        
+                                        <li class="page-item"><a class="page-link" href="?page={{ items.paginator.num_pages }}">Last</a></li>
+                                    </ul>
+                                </nav>
+                                <br>
+                                <div class="tm-table-actions-col-left">
+                                 <nav aria-label="Page navigation" class="d-inline-block text-center">
+                                    <ul class="pagination tm-pagination">
+
+                                        {% if collection_display == 0 %}
+
+                                        {% if items.has_previous %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{items.previous_page_number}}&q={{request.GET.q}}">Previous</a></li>
+                                        {% endif %}
+
+                                        {% if items.has_next %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{items.next_page_number}}&q={{request.GET.q}}&dropdown={{request.GET.dropdown}}">Next</a></li>
+                                        {% endif %}
+
+                                        {% endif %}
+
+
+
+                                        {% if collection_display == 1 %}
+
+                                        {% if cluster_collection_display_list.has_previous %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{cluster_collection_display_list.previous_page_number}}&cat={{request.GET.cat}}">Previous</a></li>
+                                        {% endif %}
+
+                                        {% if cluster_collection_display_list.has_next %}
+                                        <li class="page-item active"><a class="page-link" href="?page={{cluster_collection_display_list.next_page_number}}&cat={{request.GET.cat}}&catnum={{request.GET.catnum}}">Next</a></li>
+                                        {% endif %}
+
+                                        {% endif %}
+                                        
+                                    </ul>
+                                </nav>
+                                
+                            </div>
+                            <thead>
+                                {% if collection_display == 0 %}
+                                    <span class="current">
+                                        Page {{ items.number }} of {{ items.paginator.num_pages }}.
+                                            </span>
+                                 {% endif %}
+                                   {% if collection_display == 1 %}
+                                    <span class="current">
+                                        Page {{ cluster_collection_display_list.number }} of {{ cluster_collection_display_list.paginator.num_pages }}.
+                                            </span>
+                                 {% endif %}
+                                </thead>
+                                </nav>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+                    <div class="bg-white tm-block h-100">
+                        <h2 class="tm-block-title d-inline-block">Recommended Wines{% if recc_on == 0  %} list is Empty {% endif %}</h2>
+                        <table class="table table-hover table-striped mt-3">
+                            {% if recc_on == 1 %}
+                            <tbody>
+                                {% for item in recommend_wines %}
+                                <tr>
+                                    
+                                    <td> <a href="/search/details/{{item.id}}" class="tm-table-mt">
+                                    {{ item.title }}</td>
+                            
+                                </tr>
+                                {% endfor %}
+                              
+                            </tbody>
+                        </table>
+                                 <form method="POST" action=" ">       
+                                   {% csrf_token %}
+                                     <br></br>
+                                     {% csrf_token %}
+                                     <input type="submit" placeholder="Search" name="rec" value="RECOMMEND" class="btn btn-small btn-primary"/>
+                                  </form>
+
+                                    <form method="POST" action=" ">       
+                                   {% csrf_token %}
+                                     <br></br>
+                                     {% csrf_token %}
+                                     <input type="submit" placeholder="Search" name="rec_del" value="DELETE LIST" class="btn btn-small btn-primary"/>
+                                  </form>
+
+                                  {% endif %}
+
+
+                                  {% if recc_on == 0 %}
+
+
+
+                                       <table class="table table-hover table-striped mt-3">
+                       
+                            <tbody>
+                             
+                                <tr>
+                                    
+                                    <td> <a href="">
+                                    Add wines to your collection to get recommendations!</td>
+                            
+                                </tr>
+                     
+                              
+                            </tbody>
+                        </table>
+
+
+
+
+                                  <form method="POST" action=" ">       
+                                   {% csrf_token %}
+                                     <br></br>
+                                     {% csrf_token %}
+                                     <input type="submit" placeholder="Search" name="rec" value="RECOMMEND" class="btn btn-small btn-primary"/>
+                                  </form>
+                                  {% endif %}
+
+
+
+
+                        <br></br>
+                          <h2 class="tm-block-title d-inline-block">Your Wine Collection{% if exists == 0 %} is Empty {% endif %}</h2>
+                        
+                        <table class="table table-hover table-striped mt-3">
+                            <tbody>
+                                {% if exists == 1 %}
+                                {% for item in collection %}
+                                <tr>
+                                    
+                                    <td> <a href="/search/details/{{item.id}}" class="tm-table-mt">
+                                    {{ item.title }}</td>
+                            
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+
+                                {% if exists == 0 %}        
+                                <tr>                                    
+                                    <td> <a href="" class="tm-table-mt">
+                                    Start adding wines to your collection by navigating to your favorite wines!</td>
+                            
+                                </tr>
+                                
+                                {% endif %}
+                            </tbody>
+                        </table>
+
+                        
+                    </div>
+                </div>
+            </div>
+
+                <form action="/search/logout/" method ="POST">
+                             {% csrf_token %}
+                             <div class="text-right">
+                                    <button type="submit" class="btn btn-small btn-primary" href = "/login/" value="Logout">Logout</button>
+                                </div>
+
+
+                </form>
+
+            <footer class="row tm-mt-small">
+                <div class="col-12 font-weight-light">
+                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                        Created by
+                        <a rel="nofollow" href="search/products.html" class="text-white tm-footer-link">Shreyash Shrivastava &copy;</a>
+                    </p>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+    
+</body>
+
+</html>

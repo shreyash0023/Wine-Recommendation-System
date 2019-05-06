@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products Page - Dashboard Template</title>
+    
+    <!-- 
+
+    Template 2108 Dashboard
+
+	http://www.tooplate.com/view/2108-dashboard
+    
+    -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="{% static 'css/tooplate.css' %}">
+</head>
+
+<body id="reportsPage" class="bg02">
+
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand" href="index.html">
+                            <i class="fas fa-3x fa-wine-glass tm-site-icon"></i>
+                            <h1 class="tm-site-title mb-0">Wines</h1>
+                        </a>              
+                    </nav> 
+                   
+                        </div>
+                            <div class="col-12">
+                            <nav class="navbar navbar-expand navbar-light bg-light">
+                            <i class="fas fa-2x fas fa-user aria-hidden="true""></i>
+                            <b><em>{{ name}}</em></b>
+                                </nav>
+                            </div>          
+            </div>
+            <!-- row -->
+            <div class="row tm-content-row tm-mt-big">
+                <div class="col-xl-8 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12">
+                                <h2 class="tm-block-title d-inline-block text-left"><u><b><em>{{item.variety}} Wine</h2></em></b></u>
+
+
+                            
+                           
+                    
+                
+
+                        <div class="table-responsive">
+
+                        Ratings by <b>{{item.taster_name}}</b>
+                        <br></div>
+                        Twitter Handle &nbsp; <b>{% if twitter != 0 %} {{item.taster_twitter_handel}} {% endif %}{% if twitter == 0 %} The taster does not use twitter! {% endif %}</b>
+                        <br></br>
+                                        <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                                    {{des}}
+                                            
+
+                                <thead>
+                                    <tr class="tm-bg-gray">
+                                        <th scope="col">Wine Title</th>
+                                        <th scope="col">Province</th>
+                                        <th scope="col" class="text-center">Price</th>
+                                        <th scope="col" class="text-center">Points</th>
+                                        <th scope="col">Winery</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Variety</th> 
+                                    </tr>
+                                </thead>
+
+
+
+                                <tbody>
+
+                                      
+                                    <tr>
+
+                                       
+                                        <td class="tm-product-name">{{ item.title }}</td>
+                                        <td class="text-center">{{ item.province }}</td>
+                                        <td class="text-center">{{ item.price }}</td>
+                                        <td class="text-center">{{ item.points }}</td>
+                                         <td class="text-center">{{ item.winery }}</td>
+                                          <td class="text-center">{{ item.country }}</td>
+                                          <td class="text-center">{{ item.variety }}</td>       
+                                    </tr>
+                                   
+                                
+                                </tbody>
+                                         
+                            </table>
+                            <br></div>
+                          
+
+                            <form action="/search/display_wines/" method ="POST">
+                             {% csrf_token %}
+                             <div class="text-right">
+                                    <button type="submit" class="btn btn-small btn-primary" href = "/display_wines/" value="Logout">Back</button>
+                                 </div>
+                                </form>
+                               Add this wine to your collection! Please rate the wine.
+                               <div class="text-right">
+                              <form method="GET" action=" ">       
+                                     <select name = "dropdown"  class="btn btn-small btn-primary">
+                                        <option value = "1">1</option>
+                                        <option value = "2">2</option>
+                                        <option value = "3">3</option>
+                                        <option value = "4">4</option>
+                                        <option value = "5">5</option>
+                                     </select>
+                                     <br></br>
+                                     <input type="submit" placeholder="Search" href ="/details/{{id}}" value="ADD" class="btn btn-small btn-primary"/>
+                                  </form>
+
+
+                       </div>
+                    </div>
+
+                        {% if exists %}
+                             <form method="POST" action=" ">       
+                                   {% csrf_token %}
+                                     <br></br>
+                                     {% csrf_token %}
+                                     <input type="submit" placeholder="Search" name="del" href ="/details/{{id}}" value="DELETE" class="btn btn-small btn-primary"/>
+                                  </form>
+                        {% endif %}
+
+                             
+
+                
+
+            <footer class="row tm-mt-small">
+                <div class="col-12 font-weight-light">
+                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                        Created by
+                        <a rel="nofollow" href="search/products.html" class="text-white tm-footer-link">Shreyash Shrivastava &copy;</a>
+                    </p>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+    
+</body>
+{{rating}}
+</html>
