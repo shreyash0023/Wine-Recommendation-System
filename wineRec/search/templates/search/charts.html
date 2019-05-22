@@ -1,0 +1,480 @@
+{% extends 'search/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products Page - Dashboard Template</title>
+    
+    <!-- 
+
+    Template 2108 Dashboard
+
+    http://www.tooplate.com/view/2108-dashboard
+    
+    -->
+    {% load staticfiles %}
+    <link rel="icon" href="{% static 'img/faviconn.ico' %}">
+    <link rel="icon" href="{% static 'img/faviconn.ico' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <!-- https://fonts.google.com/specimen/Open+Sans -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="{% static 'css/tooplate.css' %}">
+</head>
+
+<script>
+{% block jquery %}
+var endpoint = '/search/api/chart/data/'
+var defaultData = []
+var labels = [];
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        labels = data.labels
+        labels_data = data.data_labels
+        defaultData1 = data.default1
+        defaultData2 = data.default2
+        defaultData3 = data.default3
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+function setChart(){
+    var ctx = document.getElementById("myChart");
+    var ctx2 = document.getElementById("myChart2");
+    var ctx3 = document.getElementById("myChart3");
+    var myChart = new Chart(ctx2, {
+    type: 'polarArea',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Wine Categories',
+            data: defaultData1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+
+                //
+
+                               'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+            ],
+            borderColor: [
+                           'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+
+                //
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Wine Categories',
+            data: defaultData2,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+
+                //
+
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+            ],
+            borderColor: [
+                       'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+
+     var myChart = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Wine Distances',
+            data: defaultData3,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+
+                //
+
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                 'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 900, 411, 0.2)',
+                'rgba(70, 70, 70, 0.2)',
+            ],
+            borderColor: [
+                       'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(25, 9, 4, 0.2)',
+                'rgba(500, 40, 490, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(785, 679, 14, 0.2)',
+                'rgba(395, 199, 14, 0.2)',
+                'rgba(25, 49, 48, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+                'rgba(285, 149, 64, 0.2)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                        min: 0,
+                        max: 0.5,
+                        stepSize: 10
+                }
+            }]
+        }
+    },
+     title: {
+                    display: true,
+                    text: 'Chart.js Line Chart - Legend'
+                }
+});
+
+
+}
+// var ctx = document.getElementById("myChart");
+
+
+
+{% endblock %}
+</script>
+
+{% block content %}
+<body id="reportsPage" class="bg02">
+
+    <div class="" id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+                        <a class="navbar-brand">
+                            <i class="fas fa-3x fa-wine-glass tm-site-icon"></i>
+                            <h1 class="tm-site-title mb-0">Wines</h1>
+                        </a>              
+                    </nav> 
+                   
+                        </div>
+                             
+            </div>
+            <!-- row -->
+
+                            </div>     
+            <div class="row tm-content-row tm-mt-big">
+                <div class="col-xl-8 col-lg-12 tm-md-12 tm-sm-12 tm-col">
+                    <div class="bg-white tm-block h-100">
+                        <div class="row">
+
+                <div class="col-12">
+                           
+                            <div class="col-md-8 col-sm-12">
+
+                            <i class="fas fa-2x fas fa-user aria-hidden="true""></i>
+                            <h3 class="tm-block-title d-inline-block text-left"><em>{{name}}</h2></em>
+                            
+                                <h2 class="tm-block-title d-inline-block text-left"><u><b><em>Categorical Analysis</h2></em></b></u>
+
+
+                            
+                           
+                    
+                
+
+                        <div class="table-responsive">
+
+                       
+
+
+                       </div>
+                    </div>
+
+                             
+
+                
+
+    
+
+    <div class='col-sm-12' url-endpoint='{% url "search:api-data" %}'>
+        <div class='col-sm-6'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>
+
+
+        
+
+        <h2 class="tm-block-title d-inline-block text-left"><u><b><em>Kmeans-Distance Analysis</h2></em></b></u>
+        <div class='col-sm-6'>
+            <canvas id="myChart3" width="1000" height="1000"></canvas>
+        </div>
+
+          <p>Select the category to calculate the distance metric! This calculates the Euclidean distance of your selected wines from the different categories.</p>
+                        <form method="GET" action=" "> 
+                        {% csrf_token %}
+
+                                     <select name = "cat"  class="btn btn-small btn-primary">
+                                        {% for x in cluster_names %} 
+                                        <option value = "{{x.cluster_name_generated}}">{{x.cluster_name_generated}}</option>
+                                        {% endfor %}
+                                     </select>
+                                     <br></br>
+                                     <input type="submit" placeholder="Search" href ="/details/{{id}}" value="Calculate" class="btn btn-small btn-primary"/>
+                                  </form>
+
+    </div>
+                        
+
+                            <form action="/search/display_wines/" method ="POST">
+                             {% csrf_token %}
+                             <div class="text-right">
+                                    <button type="submit" class="btn btn-small btn-primary" href = "/display_wines/" value="Logout">Back</button>
+                                 </div>
+                                </form>
+
+
+
+
+
+       <footer class="row tm-mt-small">
+                <div class="col-12 font-weight-light">
+                    <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                        Created by
+                        <a rel="nofollow" href="search/products.html" class="text-white tm-footer-link">Shreyash Shrivastava &copy;</a>
+                    </p>
+                </div>
+
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>
+{% endblock content %}

@@ -14,7 +14,7 @@
     
     -->
     {% load staticfiles %}
-
+    <link rel="icon" href="{% static 'img/faviconn.ico' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
     <!-- https://fonts.google.com/specimen/Open+Sans -->
     <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
@@ -111,6 +111,7 @@
                             <input type="submit" value="Refresh" class="btn btn-small btn-primary" text="text-right"/>
                         </form>
                         <br></br>
+                        {% if super == 1 %}
                         <p> Enter the number of categories you want for the wines below.</p>
                          <form method="GET" action=" ">
                             {% csrf_token %}
@@ -119,6 +120,9 @@
                                             <input type="submit" placeholder="Search"  class="btn btn-small btn-primary"/>
                                         </form>
                         <br></br>
+
+                        {% endif %}
+
                         {% if check_cluster == 1 %}
                         <p> Select the category to display from!</p>
                         <form method="GET" action=" "> 
@@ -132,6 +136,16 @@
                                      <br></br>
                                      <input type="submit" placeholder="Search" href ="/details/{{id}}" value="Display" class="btn btn-small btn-primary"/>
                                   </form>
+
+
+                        
+
+                                   <form action='/search/home/' method ="GET">
+                             {% csrf_token %}
+                             <div class="text-right">
+                                    <button type="submit" class="btn btn-small btn-primary" href = '{% url "search:home" %}' value="Logout">Statistical Analysis</button>
+                                 </div>
+                                </form>
 
                         <div class="text-right"> 
                         <p>
